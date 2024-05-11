@@ -13,45 +13,70 @@ body {
 }
 
 .twister {
-  width:300px;
-  height: 300px;
+  width:270px;
+  height: 270px;
   background: #222;
   border-radius: 50%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: rotate(45deg);
+}
+
+.container-btns {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.btns-up {
+  display: flex;
+}
+
+.btns-down {
+  display: flex;
 }
 
 .btn-twister {
-  width: 90px;
-  height: 110px;
-  position: absolute;
-  opacity: .5;
-  border-radius: 40% 70% 70% 40%;
+  position: relative;
   cursor: pointer;
+  transition: all .3s;
 }
+
 
 #btn-twister1 {
-  background: lightgreen;
-  left: 5%;
+  top: 5px;
+  left: -1px;
 }
 
-#btn-twister2 {
-  background: red;
-  top: 2%;
-  transform: rotate(90deg);
+/* #btn-twister2 {
+  
 }
 
 #btn-twister3 {
-  background: yellow;
-  right: 5%;
-  transform: rotate(180deg);
+  
 }
 
 #btn-twister4 {
-  background: purple;
-  bottom: 2%;
-  transform: rotate(-90deg);
+  
+} */
+
+#btn-twister1:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+#btn-twister2:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+#btn-twister3:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+#btn-twister4:hover {
+  transform: scale(1.05);
+  opacity: 1;
 }
