@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&family=Teko:wght@300..700&display=swap');
+
 body {
   margin: 0;
 }
@@ -16,11 +18,35 @@ body {
   width:270px;
   height: 270px;
   background: #222;
+  box-shadow: 0 0 10px ;
   border-radius: 50%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.name {
+  position: absolute;
+  color: #6e7377;
+  font-family: "Teko", sans-serif;
+  font-weight: 500;
+  letter-spacing: -2px;
+}
+
+.name #s {
+  font-size: 2.3rem;
+  font-weight: 600;
+}
+
+.name #i {
+  font-size: 2.2rem;
+  font-weight: 650;
+}
+
+.name span {
+  font-size: 3rem;
+  letter-spacing: -2px;
 }
 
 .container-btns {
@@ -39,6 +65,7 @@ body {
 
 .btn-twister {
   position: relative;
+  filter: drop-shadow(0 0 10px purple);
   cursor: pointer;
   transition: all .3s;
 }
@@ -62,21 +89,21 @@ body {
 } */
 
 #btn-twister1:hover {
-  transform: scale(1.05);
+  
   opacity: 1;
 }
 
 #btn-twister2:hover {
-  transform: scale(1.05);
+  
   opacity: 1;
 }
 
 #btn-twister3:hover {
-  transform: scale(1.05);
+  
   opacity: 1;
 }
 
 #btn-twister4:hover {
-  transform: scale(1.05);
+  
   opacity: 1;
 }

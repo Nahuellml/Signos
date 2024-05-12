@@ -10,11 +10,15 @@ class Twister {
     this.playingSequence = false;
     this.sequence = [];
     this.playerSequence = [];
+    this.waitingForUserInput = false; 
     btn1.addEventListener('click', () => this.handleButtonClick('green'));
     btn2.addEventListener('click', () => this.handleButtonClick('red'));
     btn3.addEventListener('click', () => this.handleButtonClick('blue'));
     btn4.addEventListener('click', () => this.handleButtonClick('yellow'));
-    this.startGame();
+
+    setTimeout(() => {
+      this.startGame(); // Llamar a startGame() después de un breve retraso
+    }, 100); // Retraso de 100 milisegundos
   }
 
   startGame() {
@@ -40,33 +44,46 @@ class Twister {
   }
 
   async showSequence() {
-    this.playingSequence = true;
-    for (let i = 0; i < this.sequence.length; i++) {
-      const color = this.sequence[i];
-      await this.lightUpButton(color);
-      await this.sleep(1000);
-      this.resetButtons();
-      await this.sleep(500);
+    // Mostrar la secuencia solo si no se ha mostrado antes en este nivel
+    if (!this.playingSequence) {
+        this.playingSequence = true; // Establecer el estado playingSequence
+        for (let i = 0; i < this.sequence.length; i++) {
+            const color = this.sequence[i];
+            await this.lightUpButton(color);
+            await this.sleep(1000);
+            this.resetButtons();
+            await this.sleep(500);
+        }
+        this.playingSequence = false; // Restablecer el estado playingSequence después de mostrar la secuencia
+        this.waitingForUserInput = true; // Esperar la entrada del usuario después de mostrar la secuencia
     }
-    this.playingSequence = false;
-  }
+}
 
-  async lightUpButton(color) {
-    switch (color) {
-      case 'green':
+
+
+async lightUpButton(color) {
+  this.resetButtons();
+
+  switch (color) {
+    case 'green':
         btn1.style.opacity = 1;
         break;
-      case 'red':
+    case 'red':
         btn2.style.opacity = 1;
         break;
-      case 'blue':
+    case 'blue':
         btn3.style.opacity = 1;
         break;
-      case 'yellow':
+    case 'yellow':
         btn4.style.opacity = 1;
         break;
-    }
   }
+  
+  // Después de un breve período de tiempo, restaurar la opacidad original
+  await this.sleep(500); // Puedes ajustar el tiempo según lo desees
+  this.resetButtons();
+}
+
 
   resetButtons() {
     btn1.style.opacity = 0.5;
@@ -80,12 +97,13 @@ class Twister {
   }
 
   getPlayerInput(color) {
-    if (!this.playingSequence) {
-      this.lightUpButton(color); // Ilumina el botón al hacer clic
+    if (!this.playingSequence && this.waitingForUserInput) { // Permitir la entrada del jugador solo si no estamos mostrando la secuencia y estamos esperando su entrada
+      this.lightUpButton(color); // Iluminar el botón al hacer clic
       const expectedColor = this.sequence[this.playerSequence.length];
       if (color === expectedColor) {
         this.playerSequence.push(color);
         if (this.playerSequence.length === this.sequence.length) {
+          this.waitingForUserInput = false; // Después de completar la secuencia, esperar a mostrar la siguiente secuencia
           this.levelUp();
         }
       } else {
@@ -93,12 +111,13 @@ class Twister {
         this.restartGame();
       }
     } else {
-      if (this.playerSequence.length > 0) {
+      if (this.playerSequence.length > 0 && !this.playingSequence) {
         alert('Espera tu turno. Ahora está jugando el juego.');
       }
     }
     console.log(this.playerSequence);
   }
+
 
   levelUp() {
     alert('¡Nivel completado! Subiendo al siguiente nivel.');
@@ -107,10 +126,11 @@ class Twister {
     const newColor = this.getRandomColor(); // Generar un nuevo color para agregar a la secuencia
     this.sequence.push(newColor); // Agregar el nuevo color a la secuencia existente
     setTimeout(() => {
-      this.showSequence(); // Mostrar la nueva secuencia después de un breve retraso
-    }, 1000);
+        this.showSequence(); // Mostrar la nueva secuencia después de un breve retraso
+    }, 1000); // Retraso de 1 segundo antes de mostrar la secuencia
+    this.waitingForUserInput = true;
     console.log(this.sequence)
-}
+  }
 
 
   restartGame() {

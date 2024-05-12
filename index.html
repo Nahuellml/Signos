@@ -9,6 +9,11 @@
 <body>
   <div class="container">
     <div class="twister">
+      <div class="name">
+        <span id="s">S</span>
+        <span id="i">l</span>
+        <span>mon</span>
+      </div>
       <div class="container-btns">
         <div class="btns-up">
           <div class="btn-twister" id="btn-twister1">
@@ -17,9 +22,14 @@
               <path d="M2.776 39.9673C1.02867 39.8386 0.136666 38.8996 0.0999994 37.1503C4.054 16.0976 15.572 3.80063 34.654 0.259297C37.238 -0.31137 38.5057 0.651296 38.457 3.1473L37.632 20.9873C37.5973 21.7913 36.6743 22.5026 34.863 23.1213C29.3817 25.6773 25.464 30.033 23.11 36.1883C22.9987 37.7196 21.847 38.5423 19.655 38.6563L2.776 39.9673Z" fill="green" stroke="#FF0000" stroke-width="0.1"/>
               </g>
               <defs>
-              <clipPath id="clip0_6_7">
-              <rect width="38.56" height="40.07" fill="white"/>
-              </clipPath>
+                <!-- Definimos el gradiente -->
+                <linearGradient id="gradiente" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+                </linearGradient>
+                <clipPath id="clip0_6_7">
+                <rect width="38.56" height="40.07" fill="white"/>
+                </clipPath>
               </defs>
               </svg>                  
           </div>
