@@ -2,6 +2,7 @@ const btn1 = document.getElementById('btn-twister1');
 const btn2 = document.getElementById('btn-twister2');
 const btn3 = document.getElementById('btn-twister3');
 const btn4 = document.getElementById('btn-twister4');
+const displayLevel = document.querySelector('.level');
 
 class Twister {
   constructor() {
@@ -24,6 +25,7 @@ class Twister {
   startGame() {
     this.generateSequence(); // Genera la secuencia al inicio del juego
     this.showSequence();
+    displayLevel.textContent = this.level;
     console.log(this.sequence)
   }
 
@@ -105,6 +107,7 @@ async lightUpButton(color) {
         if (this.playerSequence.length === this.sequence.length) {
           this.waitingForUserInput = false; // Después de completar la secuencia, esperar a mostrar la siguiente secuencia
           this.levelUp();
+          displayLevel.textContent = this.level;
         }
       } else {
         alert('¡Seleccionaste un color incorrecto! El juego se reiniciará.');

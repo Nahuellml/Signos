@@ -15,7 +15,7 @@ body {
 }
 
 .twister {
-  width:270px;
+  width: 270px;
   height: 270px;
   background: #222;
   box-shadow: 0 0 10px ;
@@ -48,6 +48,13 @@ body {
 .name span {
   font-size: 3rem;
   letter-spacing: -2px;
+}
+
+.level {
+  position: absolute;
+  top: 55%;
+  color: red;
+  font-size: 1.5rem;
 }
 
 .container-btns {
