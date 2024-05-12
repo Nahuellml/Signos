@@ -37,6 +37,7 @@ body {
 .name #s {
   font-size: 2.3rem;
   font-weight: 600;
+  transform: scaleX(10);
 }
 
 .name #i {

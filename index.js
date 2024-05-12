@@ -138,8 +138,11 @@ async lightUpButton(color) {
     this.level = 1;
     this.sequence = [];
     this.playerSequence = [];
-    this.startGame();
-  }
+    setTimeout(() => {
+        this.startGame(); // Reiniciar el juego después de un breve retraso
+    }, 1000); // Retraso de 1 segundo antes de reiniciar el juego
+}
+
 }
 
 const twisterMemoGame = new Twister();
