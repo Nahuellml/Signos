@@ -4,7 +4,7 @@ const btn3 = document.getElementById('btn-twister3');
 const btn4 = document.getElementById('btn-twister4');
 const displayLevel = document.querySelector('.level');
 const message = document.querySelector('.message');
-const btnAceptar = document.querySelector('.btn-aceptar');
+const btnAceptar = document.getElementById('btn-aceptar');
 
 class Twister {
   constructor() {
@@ -25,6 +25,7 @@ class Twister {
     this.generateSequence(); // Genera la secuencia al inicio del juego
     this.showSequence();
     displayLevel.textContent = this.level;
+    btnAceptar.disabled = true;
     console.log(this.sequence)
   }
 
@@ -51,9 +52,9 @@ class Twister {
         for (let i = 0; i < this.sequence.length; i++) {
             const color = this.sequence[i];
             await this.lightUpButton(color);
-            await this.sleep(1000);
+            await this.sleep(700);
             this.resetButtons();
-            await this.sleep(500);
+            //await this.sleep(500);
         }
         this.playingSequence = false; // Restablecer el estado playingSequence después de mostrar la secuencia
         this.waitingForUserInput = true; // Esperar la entrada del usuario después de mostrar la secuencia
@@ -119,6 +120,7 @@ async lightUpButton(color) {
     } else {
       if (this.playerSequence.length > 0 && !this.playingSequence) {
         message.textContent = 'Espera tu turno. Ahora está jugando el juego.';
+        
       }
     }
     console.log(this.playerSequence);
@@ -137,7 +139,7 @@ async lightUpButton(color) {
     this.sequence.push(newColor); // Agregar el nuevo color a la secuencia existente
     setTimeout(() => {
         this.showSequence(); // Mostrar la nueva secuencia después de un breve retraso
-    }, 2700); // Retraso de 1 segundo antes de mostrar la secuencia
+    }, 1000); // Retraso de 1 segundo antes de mostrar la secuencia
     this.waitingForUserInput = true;
     console.log(this.sequence)
   }
@@ -146,9 +148,9 @@ async lightUpButton(color) {
   restartGame() {
     message.textContent ='Fallaste, el juego se reinicia.';
     setTimeout(() => {
+      // Mostrar la nueva secuencia después de un breve retraso
       message.textContent = '';
-       // Mostrar la nueva secuencia después de un breve retraso
-  }, 2000);
+  }, 2700);
     this.level = 1;
     this.sequence = [];
     this.playerSequence = [];
@@ -160,3 +162,4 @@ async lightUpButton(color) {
 }
 
 const twisterMemoGame = new Twister();
+console.log(btnAceptar);

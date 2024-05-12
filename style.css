@@ -7,7 +7,7 @@ body {
 .container {
   width: 100%;
   height: 100vh;
-  background: rgb(0, 0, 0);
+  background: #000000cb;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,7 +19,7 @@ body {
 .twister {
   width: 270px;
   height: 270px;
-  background: #222;
+  background: #000000;
   box-shadow: 0 0 10px ;
   border-radius: 50%;
   position: relative;
@@ -28,10 +28,27 @@ body {
   align-items: center;
 }
 
-.btn-aceptar {
+#btn-aceptar {
   position: relative;
   font-family: 'Teko';
   font-size: 1.2rem;
+  background: rgb(51, 17, 90);
+  color: white;
+  border: none;
+  box-shadow: 2px 2px 0 #f2f;
+  transition: all 1s;
+}
+
+#btn-aceptar:active {
+  background-color: black;
+  box-shadow: none;
+}
+
+#btn-aceptar:disabled {
+  background: #3b3b3b;
+  color: rgb(117, 6, 6);
+  border: 1px solid rgb(82, 19, 19);
+  box-shadow: none;
 }
 
 .message {
@@ -93,7 +110,7 @@ body {
 
 .btn-twister {
   position: relative;
-  filter: drop-shadow(0 0 10px purple);
+  /* filter: drop-shadow(0 0 10px purple); */
   cursor: pointer;
   transition: all .3s;
 }
@@ -115,23 +132,3 @@ body {
 #btn-twister4 {
   
 } */
-
-#btn-twister1:hover {
-  
-  opacity: 1;
-}
-
-#btn-twister2:hover {
-  
-  opacity: 1;
-}
-
-#btn-twister3:hover {
-  
-  opacity: 1;
-}
-
-#btn-twister4:hover {
-  
-  opacity: 1;
-}
