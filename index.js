@@ -3,6 +3,8 @@ const btn2 = document.getElementById('btn-twister2');
 const btn3 = document.getElementById('btn-twister3');
 const btn4 = document.getElementById('btn-twister4');
 const displayLevel = document.querySelector('.level');
+const message = document.querySelector('.message');
+const btnAceptar = document.querySelector('.btn-aceptar');
 
 class Twister {
   constructor() {
@@ -16,10 +18,7 @@ class Twister {
     btn2.addEventListener('click', () => this.handleButtonClick('red'));
     btn3.addEventListener('click', () => this.handleButtonClick('blue'));
     btn4.addEventListener('click', () => this.handleButtonClick('yellow'));
-
-    setTimeout(() => {
-      this.startGame(); // Llamar a startGame() después de un breve retraso
-    }, 100); // Retraso de 100 milisegundos
+    btnAceptar.addEventListener('click', () => this.startGame())
   }
 
   startGame() {
@@ -110,12 +109,16 @@ async lightUpButton(color) {
           displayLevel.textContent = this.level;
         }
       } else {
-        alert('¡Seleccionaste un color incorrecto! El juego se reiniciará.');
+        message.textContent = '¡Seleccionaste un color incorrecto! El juego se reiniciará.';
+        setTimeout(() => {
+          message.textContent = '';
+           // Mostrar la nueva secuencia después de un breve retraso
+      }, 1000);
         this.restartGame();
       }
     } else {
       if (this.playerSequence.length > 0 && !this.playingSequence) {
-        alert('Espera tu turno. Ahora está jugando el juego.');
+        message.textContent = 'Espera tu turno. Ahora está jugando el juego.';
       }
     }
     console.log(this.playerSequence);
@@ -123,27 +126,35 @@ async lightUpButton(color) {
 
 
   levelUp() {
-    alert('¡Nivel completado! Subiendo al siguiente nivel.');
+    message.textContent = '¡Nivel completado! Subiendo al siguiente nivel.';
+    setTimeout(() => {
+      message.textContent = '';
+       // Mostrar la nueva secuencia después de un breve retraso
+  }, 2000);
     this.level++;
     this.playerSequence = [];
     const newColor = this.getRandomColor(); // Generar un nuevo color para agregar a la secuencia
     this.sequence.push(newColor); // Agregar el nuevo color a la secuencia existente
     setTimeout(() => {
         this.showSequence(); // Mostrar la nueva secuencia después de un breve retraso
-    }, 1000); // Retraso de 1 segundo antes de mostrar la secuencia
+    }, 2700); // Retraso de 1 segundo antes de mostrar la secuencia
     this.waitingForUserInput = true;
     console.log(this.sequence)
   }
 
 
   restartGame() {
-    alert('El juego se reinicia.');
+    message.textContent ='Fallaste, el juego se reinicia.';
+    setTimeout(() => {
+      message.textContent = '';
+       // Mostrar la nueva secuencia después de un breve retraso
+  }, 2000);
     this.level = 1;
     this.sequence = [];
     this.playerSequence = [];
     setTimeout(() => {
         this.startGame(); // Reiniciar el juego después de un breve retraso
-    }, 1000); // Retraso de 1 segundo antes de reiniciar el juego
+    }, 2700); // Retraso de 1 segundo antes de reiniciar el juego
 }
 
 }
